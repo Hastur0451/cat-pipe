@@ -101,7 +101,6 @@ namespace NYAN_dots
             // 着地判定 (Ground detection)
             if (collision.gameObject.CompareTag("ground"))
             {
-                Debug.Log("Grounded");
                 isGrounded = true;
                 isJumping = false;
                 amt.SetBool("jump", false);
@@ -113,7 +112,6 @@ namespace NYAN_dots
             // 离开地面 (Leave ground)
             if (collision.gameObject.CompareTag("ground"))
             {
-                Debug.Log("Left ground");
                 isGrounded = false;
             }
         }
