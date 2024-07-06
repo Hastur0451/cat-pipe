@@ -22,6 +22,11 @@ public class MovingPlatform : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (PauseManager.isPaused)
+        {
+            return; // 如果游戏暂停，则不移动平台
+        }
+
         float step = speed * Time.fixedDeltaTime;
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
 
@@ -31,16 +36,16 @@ public class MovingPlatform : MonoBehaviour
             SetTargetPosition();
         }
 
-        // Calculate the platform's velocity
+        // 计算平台的速度
         Vector3 velocity = (transform.position - lastPosition) / Time.fixedDeltaTime;
 
-        // Update player's velocity
+        // 更新玩家的速度
         if (playerRb != null)
         {
             playerRb.velocity += new Vector2(velocity.x, velocity.y);
         }
 
-        // Update last position
+        // 更新 lastPosition
         lastPosition = transform.position;
     }
 
